@@ -1,0 +1,39 @@
+﻿@model Employee
+
+<h1 class="text-center text-success text-decoration-underline">
+    Details
+</h1>
+
+<partial name="_hrSupport"/>
+
+<div class="row" >
+    <div class="col-6">
+        <dl class="row">
+    <dt class="col-4">@Html.DisplayNameFor(e=>e.ID)</dt><dd class="col-8">@Html.DisplayFor(e=>e.ID)</dd>
+    <dt class="col-4">@Html.DisplayNameFor(e=>e.Name)</dt><dd class="col-8">@Html.DisplayFor(e=>e.Name)</dd>
+    <dt class="col-4">@Html.DisplayNameFor(e=>e.Position)</dt><dd class="col-8">@Html.DisplayFor(e=>e.Position)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.Salary)</dt><dd class="col-8">@Html.DisplayFor(e=>e.Salary)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.Bonus)</dt><dd class="col-8">@Html.DisplayFor(e=>e.Bonus)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.PhoneNo)</dt><dd class="col-8">@Html.DisplayFor(e=>e.PhoneNo)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.Email)</dt><dd class="col-8">@Html.DisplayFor(e=>e.Email)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.Password)</dt><dd class="col-8">@Html.DisplayFor(e=>e.Password)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.HiringDateTime)</dt><dd class="col-8">@Html.DisplayFor(e=>e.HiringDateTime)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.BirthDate)</dt><dd class="col-8">@Html.DisplayFor(e=>e.BirthDate)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.AttendanceTime)</dt><dd class="col-8">@Html.DisplayFor(e=>e.AttendanceTime)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.LeavingTime)</dt><dd class="col-8">@Html.DisplayFor(e=>e.LeavingTime)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.DepartmentId)</dt><dd class="col-8">@Html.DisplayFor(e=>e.Department.DepName)</dd>
+
+     
+
+</dl>
+    </div>
+
+    <div class="col-6">
+        <img asp-append-version src="@Model.ImageUrl" id="empImage" class="col-2" style="object-fit:cover"/>
+
+    </div>
+</div>
+
+
+
+<a asp-controller="Employees" asp-action="GetIndexView" class="btn btn-secondary">Back To List</a>

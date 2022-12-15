@@ -1,0 +1,181 @@
+﻿@model IEnumerable<Employee>
+
+
+<h1 class="text-center text-success text-decoration-underline">
+    Employees Index
+</h1>
+
+@*<h2 class="bright-greeting">
+    Welcome To Our Staff
+</h2>*@
+
+<br />
+<a asp-controller="Employees" asp-action="GetCreateView" class="btn btn-success mb-3 mt-3">Create New</a>
+
+<partial name="_hrSupport"/>
+<br />
+
+@*<form method="get" asp-controller="Employees" asp-action="GetIndexView">
+    <label>Page Size</label>
+    <input type="number" name="pageSize" value="@ViewBag.PageSize" />
+    <label>Page No.</label>
+    <input type="number" name="pageNumber" value="@ViewBag.PageNumber" />
+
+    <button type="submit">Go</button>
+</form>*@
+
+<div class="row">
+    <form method="get" asp-controller="Employees" asp-action="GetIndexView" class="mb-3 col-3">
+    <label>Page Size</label>
+    <input type="number" name="pageSize" value="@ViewBag.PageSize" class="form-control" />
+    <label class="mt-2">Page No.</label>
+    <input type="number" name="pageNumber" value="@ViewBag.PageNumber" class="mb-3 form-control" />
+
+    <button type="submit" class="mb-3 btn btn-dark">Go</button>
+    
+
+  <div class="input-group">
+        <input type="text" name="search" class="form-control" value="@ViewBag.CurrentSearch"/>
+    <button type="submit" class="btn btn-secondry input-group-addon">
+        <i class="bi bi-search"></i>
+    </button>
+  </div>
+
+</form>
+</div>
+
+
+
+@if (Model.Count()>0)
+{
+        <table class="table table-striped table-bordered table-hover table-success">
+        <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(e=>e.ID)</th>
+                            <th>
+                                
+                                        <div style="width:50%;float:left;text-align:left">
+                                        @Html.DisplayNameFor(e=>e.Name)
+                                        </div>
+                                    
+                                    <div style="width:50%;float:right;text-align:right">
+                                            <a asp-controller="Employees" asp-action="GetIndexView" asp-route-sortType="FullName" asp-route-sortOrder="asc" asp-route-search="@ViewBag.CurrentSearch" style="text-decoration:none" asp-route-pageSize="@ViewBag.PageSize" asp-route-pageNumber="@ViewBag.PageNumber">
+                                        <i class="bi bi-arrow-up"></i>
+                                        </a>
+                                                    <a asp-controller="Employees" asp-action="GetIndexView" asp-route-sortType="FullName" asp-route-sortOrder="desc" asp-route-search="@ViewBag.CurrentSearch"  asp-route-pageSize="@ViewBag.PageSize" asp-route-pageNumber="@ViewBag.PageNumber">
+                                            <i class="bi bi-arrow-down"></i>
+                                            </a>
+                                </div> 
+                                </th>
+
+                            <th>
+
+                                            <div style="width:50%;float:left;text-align:left">
+                        @Html.DisplayNameFor(e=>e.Position)
+                                            </div>
+
+                                        <div style="width:50%;float:right;text-align:right">
+                                            <a asp-controller="Employees" asp-action="GetIndexView" asp-route-sortType="Position" asp-route-sortOrder="asc" asp-route-search="@ViewBag.CurrentSearch" style="text-decoration:none" asp-route-pageSize="@ViewBag.PageSize" asp-route-pageNumber="@ViewBag.PageNumber">
+                                            <i class="bi bi-arrow-up"></i>
+                                            </a>
+                                                        <a asp-controller="Employees" asp-action="GetIndexView" asp-route-sortType="Position" asp-route-sortOrder="desc" asp-route-search="@ViewBag.CurrentSearch"  asp-route-pageSize="@ViewBag.PageSize" asp-route-pageNumber="@ViewBag.PageNumber">
+                                                <i class="bi bi-arrow-down"></i>
+                                                </a>
+                                    </div> 
+                                    </th>
+
+                            <th>
+
+                                            <div style="width:50%;float:left;text-align:left">
+                        @Html.DisplayNameFor(e=>e.Salary)
+                                            </div>
+
+                                        <div style="width:50%;float:right;text-align:right">
+                                                <a asp-controller="Employees" asp-action="GetIndexView" asp-route-sortType="Salary" asp-route-sortOrder="asc" asp-route-search="@ViewBag.CurrentSearch" style="text-decoration:none" asp-route-pageSize="@ViewBag.PageSize" asp-route-pageNumber="@ViewBag.PageNumber">
+                                            <i class="bi bi-arrow-up"></i>
+                                            </a>
+                                                            <a asp-controller="Employees" asp-action="GetIndexView" asp-route-sortType="Salary" asp-route-sortOrder="desc" asp-route-search="@ViewBag.CurrentSearch"  asp-route-pageSize="@ViewBag.PageSize" asp-route-pageNumber="@ViewBag.PageNumber">
+                                                <i class="bi bi-arrow-down"></i>
+                                                </a>
+                                    </div> 
+                                    </th>
+                            
+                            <th>Emp Options</th>
+                        </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                                                <tr><td>@item.ID</td><td>@item.Name</td><td>@item.Position</td><td>@item.Salary</td> <td>
+                                                                <a asp-controller="Employees" asp-action="Details" asp-route-id="@item.ID" class="btn btn-warning"><i class="bi bi-card-list"></i></a>
+                                                                <a asp-controller="Employees" asp-action="EditEmployee" asp-route-id="@item.ID" class="btn btn-primary ms-1 me-1"><i class="bi bi-pencil-square"></i></a>
+                                                                <a asp-controller="Employees" asp-action="DeleteEmp" asp-route-id="@item.ID" class="btn btn-danger pl me-2"><i class="bi bi-trash"></i></a>
+
+                                                    <form method="post" asp-controller="Employees" asp-action="DeleteCurrent" asp-route-id="@item.ID" class="d-inline">
+                                                    <input type="hidden" asp-for="@item.ID"/>
+                                                    <button type="submit" onclick="return ConfirmDelete()" class="btn btn-secondary">Immediate Delete</button>
+
+                                                    </form>
+                                                    </td>
+                                                                                                       
+                                                  </tr>
+
+                }
+            }
+
+            </tbody>
+        <tfoot>
+            <tr><td colspan="3" style="font-weight:bold ">Total</td><td>@Model.Sum(e=>e.Salary)</td><td>Emp Count = @Model.Count()</td></tr>
+        </tfoot>
+    </table>
+}
+
+else{
+    <h1 class="alert alert-danger text-center text-danger">Mafesh Data Ya Sa7by !!</h1>
+}
+
+
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Home</a>
+
+<hr />
+<button onclick="ContactUs()" class="btn btn-info me-3">Contact us</button>
+<button onclick="GreetUser()" class="btn btn-info me-3">Greet</button>
+<button onclick="AcceptLicence()" class="btn btn-info">Licence</button>
+
+@section Scripts{
+        <script>
+            function ConfirmDelete(){
+                let deleteconfirmed = confirm("Are U sure U Want To Delete ?");
+               if(deleteconfirmed){
+                   alert("Employee Deleted !");
+               }
+               return deleteconfirmed;
+            }
+
+            //alert("Welcome to Employees!");
+
+            function ContactUs(){
+                alert("info@sunrise.com");
+            }
+
+            function GreetUser(){
+                let name = prompt("Enter Ur Name");
+                if(name!= null && name!=""){
+                        alert("Hello , " + name + "!");
+                }
+            }
+
+            function AcceptLicence(){
+                let licenceAccepted = confirm("Do U Accept our Licence Agreement ?");
+
+                if(licenceAccepted){
+                    alert("U Accepted our Licence Agreement!");
+                }
+                else{
+                         alert("U Didn't Accept our Licence Agreement!");
+                }
+            }
+        </script>
+}

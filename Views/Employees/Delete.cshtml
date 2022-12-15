@@ -1,0 +1,38 @@
+﻿@model Employee
+
+<h1 class="alert alert-danger text-center display-3" style="color:darkred">
+    Are U Sure U want to Delete ?
+</h1>
+
+<div class="row">
+    <div class="col-6">
+        <dl class="row">
+   <dt class="col-4">@Html.DisplayNameFor(e=>e.ID)</dt><dd class="col-8">@Html.DisplayFor(e=>e.ID)</dd>
+    <dt class="col-4">@Html.DisplayNameFor(e=>e.Name)</dt><dd class="col-8">@Html.DisplayFor(e=>e.Name)</dd>
+    <dt class="col-4">@Html.DisplayNameFor(e=>e.Position)</dt><dd class="col-8">@Html.DisplayFor(e=>e.Position)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.Salary)</dt><dd class="col-8">@Html.DisplayFor(e=>e.Salary)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.Bonus)</dt><dd class="col-8">@Html.DisplayFor(e=>e.Bonus)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.PhoneNo)</dt><dd class="col-8">@Html.DisplayFor(e=>e.PhoneNo)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.Email)</dt><dd class="col-8">@Html.DisplayFor(e=>e.Email)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.Password)</dt><dd class="col-8">@Html.DisplayFor(e=>e.Password)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.HiringDateTime)</dt><dd class="col-8">@Html.DisplayFor(e=>e.HiringDateTime)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.BirthDate)</dt><dd class="col-8">@Html.DisplayFor(e=>e.BirthDate)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.AttendanceTime)</dt><dd class="col-8">@Html.DisplayFor(e=>e.AttendanceTime)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.LeavingTime)</dt><dd class="col-8">@Html.DisplayFor(e=>e.LeavingTime)</dd>
+    <dt class="col-4" >@Html.DisplayNameFor(e=>e.DepartmentId)</dt><dd class="col-8">@Html.DisplayFor(e=>e.Department.DepName)</dd>
+</dl>
+    </div>
+   <div class="col-6">
+        <img asp-append-version src="@Model.ImageUrl" id="empImage" class="col-2" style="object-fit:contain"/>
+
+    </div>
+</div>
+
+
+
+<form method="post" asp-controller="Employees" asp-action="DeleteCurrent">
+    <input type="hidden" asp-for="ID"/>
+    <button type="submit" class="btn btn-danger mb-3">Delete Employee</button>
+</form>
+
+<a asp-controller="Employees" asp-action="GetIndexView" class="btn btn-secondary">Back To List</a>
